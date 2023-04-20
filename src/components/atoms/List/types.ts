@@ -1,8 +1,13 @@
 import React from 'react';
 
-import { SortingDirection, OnSortingChangeParams } from 'components/atoms/Table/types';
+export type SortingDirection = 1 | 0 | -1;
 
-export { SortingDirection } from 'components/atoms/Table/types';
+export type OnSortingChangeParams = Readonly<{
+  sorting: {
+    id: string;
+    direction: SortingDirection;
+  };
+}>;
 
 export type ListColumn = Readonly<{
   id: string;

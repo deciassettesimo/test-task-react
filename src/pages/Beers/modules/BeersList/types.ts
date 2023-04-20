@@ -1,5 +1,5 @@
-import { TableItem } from 'components/atoms/Table/types';
+import { ListItem } from 'components/atoms/List/types';
 
 export type ListProps = Readonly<{
-  items: TableItem[];
+  items: ListItem[];
 }>;

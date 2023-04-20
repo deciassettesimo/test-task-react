@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { TableItemData, TableCellRendererParams } from 'components/atoms/Table/types';
+import { ListItemData, ListCellRendererParams } from 'components/atoms/List/types';
 import Block from 'components/atoms/Block';
 import Grid, { Item } from 'components/atoms/Grid';
-import getFormattedAmount from 'utils/getFormattedAmount';
 import Span from 'components/atoms/Span';
 
-function Image(props: TableItemData) {
+function Image(props: ListItemData) {
   const { image_url } = props;
   if (!image_url) return null;
 
@@ -20,7 +19,7 @@ function Image(props: TableItemData) {
   );
 }
 
-function Name(props: TableItemData) {
+function Name(props: ListItemData) {
   const { name } = props;
   return (
     <Block size="s" fontWeight="medium">
@@ -29,22 +28,22 @@ function Name(props: TableItemData) {
   );
 }
 
-function Tagline(props: TableItemData) {
+function Tagline(props: ListItemData) {
   const { tagline } = props;
   return <Block size="xs">{tagline}</Block>;
 }
 
-function FirstBrewed(props: TableItemData) {
+function FirstBrewed(props: ListItemData) {
   const { first_brewed } = props;
   return <Block size="xs">{first_brewed}</Block>;
 }
 
-function Description(props: TableItemData) {
+function Description(props: ListItemData) {
   const { description } = props;
   return <Block size="xs">{description}</Block>;
 }
 
-function Parameters(props: TableItemData) {
+function Parameters(props: ListItemData) {
   const { abv, ibu, target_fg, target_og, ebc, srm, ph, attenuation_level, volume, boil_volume } =
     props;
   return (
@@ -55,7 +54,7 @@ function Parameters(props: TableItemData) {
             <Item>
               <Span color="secondary60">ABV:</Span>
             </Item>
-            <Item>{getFormattedAmount(abv)}</Item>
+            <Item>{abv}</Item>
           </Grid>
         </Item>
         <Item size={1}>
@@ -63,7 +62,7 @@ function Parameters(props: TableItemData) {
             <Item>
               <Span color="secondary60">IBU:</Span>
             </Item>
-            <Item>{getFormattedAmount(ibu)}</Item>
+            <Item>{ibu}</Item>
           </Grid>
         </Item>
         <Item size={1}>
@@ -71,7 +70,7 @@ function Parameters(props: TableItemData) {
             <Item>
               <Span color="secondary60">TARGET FG:</Span>
             </Item>
-            <Item>{getFormattedAmount(target_fg)}</Item>
+            <Item>{target_fg}</Item>
           </Grid>
         </Item>
         <Item size={1}>
@@ -79,7 +78,7 @@ function Parameters(props: TableItemData) {
             <Item>
               <Span color="secondary60">TARGET OG:</Span>
             </Item>
-            <Item>{getFormattedAmount(target_og)}</Item>
+            <Item>{target_og}</Item>
           </Grid>
         </Item>
         <Item size={1}>
@@ -87,7 +86,7 @@ function Parameters(props: TableItemData) {
             <Item>
               <Span color="secondary60">EBC:</Span>
             </Item>
-            <Item>{getFormattedAmount(ebc)}</Item>
+            <Item>{ebc}</Item>
           </Grid>
         </Item>
         <Item size={1}>
@@ -95,7 +94,7 @@ function Parameters(props: TableItemData) {
             <Item>
               <Span color="secondary60">SRM:</Span>
             </Item>
-            <Item>{getFormattedAmount(srm)}</Item>
+            <Item>{srm}</Item>
           </Grid>
         </Item>
         <Item size={1}>
@@ -103,7 +102,7 @@ function Parameters(props: TableItemData) {
             <Item>
               <Span color="secondary60">PH:</Span>
             </Item>
-            <Item>{getFormattedAmount(ph)}</Item>
+            <Item>{ph}</Item>
           </Grid>
         </Item>
         <Item size={1}>
@@ -111,7 +110,7 @@ function Parameters(props: TableItemData) {
             <Item>
               <Span color="secondary60">ATTENUATION:</Span>
             </Item>
-            <Item>{getFormattedAmount(attenuation_level)}</Item>
+            <Item>{attenuation_level}</Item>
           </Grid>
         </Item>
         {volume?.value && (
@@ -121,7 +120,7 @@ function Parameters(props: TableItemData) {
                 <Span color="secondary60">VOLUME:</Span>
               </Item>
               <Item>
-                {getFormattedAmount(volume?.value)} {volume?.unit}
+                {volume?.value} {volume?.unit}
               </Item>
             </Grid>
           </Item>
@@ -133,7 +132,7 @@ function Parameters(props: TableItemData) {
                 <Span color="secondary60">BOIL VOL.:</Span>
               </Item>
               <Item>
-                {getFormattedAmount(boil_volume?.value)} {boil_volume?.unit}
+                {boil_volume?.value} {boil_volume?.unit}
               </Item>
             </Grid>
           </Item>
@@ -143,7 +142,7 @@ function Parameters(props: TableItemData) {
   );
 }
 
-function Method(props: TableItemData) {
+function Method(props: ListItemData) {
   const { method } = props;
 
   if (!method) return null;
@@ -158,7 +157,7 @@ function Method(props: TableItemData) {
           <Block>
             {mash_temp.map((item: any, index: number) => (
               <Block key={index}>
-                {getFormattedAmount(item.temp?.value)} {item.temp?.unit}
+                {item.temp?.value} {item.temp?.unit}
                 {item.duration && `, duration: ${item.duration}`}
               </Block>
             ))}
@@ -169,7 +168,7 @@ function Method(props: TableItemData) {
         <Block margin="xs">
           <Block color="secondary60">Fermentation:</Block>
           <Block>
-            {getFormattedAmount(fermentation.temp?.value)} {fermentation.temp?.unit}
+            {fermentation.temp?.value} {fermentation.temp?.unit}
           </Block>
         </Block>
       )}
@@ -183,7 +182,7 @@ function Method(props: TableItemData) {
   );
 }
 
-function Ingredients(props: TableItemData) {
+function Ingredients(props: ListItemData) {
   const { ingredients } = props;
 
   if (!ingredients) return null;
@@ -198,7 +197,7 @@ function Ingredients(props: TableItemData) {
           <Block>
             {malt.map((item: any, index: number) => (
               <Block key={index}>
-                {item.name} - {getFormattedAmount(item.amount?.value)} {item.amount?.unit}
+                {item.name} - {item.amount?.value} {item.amount?.unit}
               </Block>
             ))}
           </Block>
@@ -210,8 +209,8 @@ function Ingredients(props: TableItemData) {
           <Block>
             {hops.map((item: any, index: number) => (
               <Block key={index}>
-                {item.name} - {getFormattedAmount(item.amount?.value)} {item.amount?.unit} (
-                {item.add}, {item.attribute})
+                {item.name} - {item.amount?.value} {item.amount?.unit} ({item.add}, {item.attribute}
+                )
               </Block>
             ))}
           </Block>
@@ -227,22 +226,22 @@ function Ingredients(props: TableItemData) {
   );
 }
 
-function FoodPairing(props: TableItemData) {
+function FoodPairing(props: ListItemData) {
   const { food_pairing } = props;
   return <Block size="xs">{food_pairing?.join(', ')}</Block>;
 }
 
-function BrewersTips(props: TableItemData) {
+function BrewersTips(props: ListItemData) {
   const { brewers_tips } = props;
   return <Block size="xs">{brewers_tips}</Block>;
 }
 
-function ContributedBy(props: TableItemData) {
+function ContributedBy(props: ListItemData) {
   const { contributed_by } = props;
   return <Block size="xs">{contributed_by}</Block>;
 }
 
-export default function cellRenderer({ id, data }: TableCellRendererParams) {
+export default function cellRenderer({ id, data }: ListCellRendererParams) {
   switch (id) {
     case 'image':
       return <Image {...data} />;
